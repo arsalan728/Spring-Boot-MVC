@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Form</title>
+</head>
+<body>
+    <h1>Employee From</h1>
+    <form th:action="save" method="post">
+<label>Employee Name</label>
+<input type="text" name="name" placeholder="Enter the employee Name"required>
+<br><br>
+<label>Employee id</label>
+<input type="number" name="empid" placeholder="Enter the id " required>
+<br><br>
+<label>Employee salary</label>
+<input type="number" name="empsalary" placeholder="Enter the salary" required>
+<br><br>
+<label>Employee gender</label>
+<input type="text" name="empgender"  placeholder="Enter the gender"required>
+<br><br>
+<label>Employee age</label>
+<input type="number" name="empage" placeholder="Enter the age"required>
+<br><br>
+<button type="submit">save</button>
+<button type="reset">Reset</button>
+    </form>
+</body>
+</html>

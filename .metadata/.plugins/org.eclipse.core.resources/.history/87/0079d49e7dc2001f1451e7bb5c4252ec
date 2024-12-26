@@ -1,0 +1,46 @@
+package com.employee.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.employee.model.EmployeeModel;
+
+
+@Controller
+public class TestController {
+@GetMapping("/form")
+public String employeefrom()
+{
+	return "form";
+}
+@PostMapping("/save")
+public String send(EmployeeModel emp) {
+	System.out.println(emp);
+	return "success";
+}
+}
+/*package com.arsalan.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.arsalan.model.ProductModel;
+
+@Controller
+public class TestController {
+	@GetMapping("/productform")
+public String productfrom()
+{
+	return "add-product";
+}
+
+
+@PostMapping("/SaveProduct")
+public String SaveProduct(ProductModel productModel)
+{
+	System.out.println(productModel);
+	return "success";
+}
+}*/

@@ -1,0 +1,3 @@
+spring.application.name=SpringBoot
+spring.mvc.static-path-pattern=/resources/**
+spring.resources.static-locations=classpath:/other-directory/

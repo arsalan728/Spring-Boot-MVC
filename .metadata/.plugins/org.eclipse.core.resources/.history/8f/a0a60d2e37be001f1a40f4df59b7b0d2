@@ -1,0 +1,12 @@
+package com.springboot.controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+
+public class ProductController {
+	@GetMapping("/arsu")
+	public String getarsu() {
+		return "add";
+	}
+	
+
+}

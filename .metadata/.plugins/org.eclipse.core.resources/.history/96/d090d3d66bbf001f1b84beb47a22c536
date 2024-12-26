@@ -1,0 +1,60 @@
+package com.springboot.controller;
+
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
+import com.springboot.entity.ProductEntity;
+import com.springboot.model.ProductModel;
+import com.springboot.service.ProductService;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+
+
+@Controller
+public class ProductController {
+	@Autowired
+	ProductService productService;
+	@GetMapping("/productform")
+	public String productform() {
+		return "add";
+	}
+@PostMapping("/saved")
+public String saved(ProductModel productModel)
+{
+	productService.saveProductDetails(productModel);
+	System.out.println(productModel);
+	return "success";
+}
+
+@GetMapping("/getallproduct")
+public String getallproduct(Model model) {
+	List<ProductEntity>products=productService.getAllProducts();
+	model.addAttribute("products",products);
+    return "product-list";
+}
+@GetMapping("/searchbyid")
+public String searchbyid() {
+	return "searchform";
+}
+@PostMapping("/searchbyid")
+public String searchbyid(@RequestParam Long,Model model)
+public String postMethodName(@RequestBody String entity) {
+	ProductEntity products=productService searchbyid(id)
+			Model.addAttribute("products",products);
+    
+    return "searchform";
+}
+
+//@PostMapping("/saveproduct")
+//public String saveproduct(ProductModel productModel) {
+//	productService.saveproductDetails(productModel);
+//	return"happy";
+//}
+}

@@ -1,0 +1,44 @@
+package com.springboot.controller;
+
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.springboot.entity.ProductEntity;
+import com.springboot.model.ProductModel;
+import com.springboot.service.ProductService;
+
+@Controller
+public class ProductController {
+	@Autowired
+	ProductService productService;
+	@GetMapping("/productform")
+	public String productform() {
+		return "add";
+	}
+@PostMapping("/saved")
+public String saved(ProductModel productModel)
+{
+	productService.saveProductDetails(productModel);
+	System.out.println(productModel);
+	return "success";
+}
+
+@GetMapping("/getallproduct")
+public String getallproduct(Model model) {
+	List<ProductEntity>products=productService.getAllProducts();
+	model.addAllAttributes(products);
+    return "product-list";
+}
+
+//@PostMapping("/saveproduct")
+//public String saveproduct(ProductModel productModel) {
+//	productService.saveproductDetails(productModel);
+//	return"happy";
+//}
+}

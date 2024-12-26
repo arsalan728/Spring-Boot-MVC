@@ -1,0 +1,41 @@
+package com.employee.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.employee.entity.EmployeeEntity;
+import com.employee.model.EmployeeModel;
+import com.employee.service.EmployeeService;
+
+import ch.qos.logback.core.model.Model;
+
+import org.springframework.web.bind.annotation.RequestParam;
+
+
+
+@Controller
+public class EmployeeController {
+	@Autowired
+	EmployeeService employeeService;
+@GetMapping("/form")
+public String employeefrom()
+{
+	return "form";
+}
+@PostMapping("/save")
+public String send(EmployeeModel employeeModel) {
+	return "success";
+}
+@GetMapping("getAllEmployees")
+public String getAllEmployees(Model model) {
+	List<EmployeeEntity>employee=employeeService.getAllEmployees()
+	model.addAttribute ("employee",employee);
+    return "employee-list";
+    
+}
+
+}

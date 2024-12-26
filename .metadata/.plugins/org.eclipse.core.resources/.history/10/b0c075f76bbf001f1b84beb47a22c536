@@ -1,0 +1,65 @@
+package com.springboot.controller;
+
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
+import com.springboot.entity.ProductEntity;
+import com.springboot.model.ProductModel;
+import com.springboot.service.ProductService;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+
+
+@Controller
+public class ProductController {
+	@Autowired
+	ProductService productService;
+	@GetMapping("/productform")
+	public String productform() {
+		return "add";
+	}
+@PostMapping("/saved")
+public String saved(ProductModel productModel)
+{
+	productService.saveProductDetails(productModel);
+	System.out.println(productModel);
+	return "success";
+}
+
+@GetMapping("/getallproduct")
+public String getallproduct(Model model) {
+	List<ProductEntity>products=productService.getAllProducts();
+	model.addAttribute("products",products);
+    return "product-list";
+}
+@GetMapping("/searchbyid")
+public String search() {
+    // Serve the search form view.
+    return "searchform";
+}
+
+@PostMapping("/searchbyid")
+public String searchById(@RequestParam("id") Long id, Model model) {
+    // Call the service to fetch the product by ID.
+    ProductEntity products = productService.searchById(id);
+
+    // Add the product to the model if found, or null if not.
+    model.addAttribute("products", products);
+
+    // Return the same view with the results.
+    return "searchform";
+}
+
+//@PostMapping("/saveproduct")
+//public String saveproduct(ProductModel productModel) {
+//	productService.saveproductDetails(productModel);
+//	return"happy";
+//}
+}
